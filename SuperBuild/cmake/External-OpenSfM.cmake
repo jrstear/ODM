@@ -31,6 +31,7 @@ ExternalProject_Add(${_proj_name}
   #--Configure step-------------
   SOURCE_DIR        ${SB_INSTALL_DIR}/bin/${_proj_name}
   CONFIGURE_COMMAND ${CMAKE_COMMAND} <SOURCE_DIR>/${_proj_name}/src
+    -DCMAKE_PREFIX_PATH=${SB_INSTALL_DIR}
     -DCERES_ROOT_DIR=${SB_INSTALL_DIR}
     -DOpenCV_DIR=${OpenCV_DIR}
     -DADDITIONAL_INCLUDE_DIRS=${SB_INSTALL_DIR}/include
