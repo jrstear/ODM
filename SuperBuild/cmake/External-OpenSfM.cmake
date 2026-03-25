@@ -25,18 +25,16 @@ ExternalProject_Add(${_proj_name}
   #--Download step--------------
   DOWNLOAD_DIR      ${SB_DOWNLOAD_DIR}
   GIT_REPOSITORY    https://github.com/jrstear/OpenSfM/
-  GIT_TAG           checkpoint_rmse
+  GIT_TAG           checkpoint_rmse_v2
   #--Update/Patch step----------
   UPDATE_COMMAND    git submodule update --init --recursive
   #--Configure step-------------
   SOURCE_DIR        ${SB_INSTALL_DIR}/bin/${_proj_name}
   CONFIGURE_COMMAND ${CMAKE_COMMAND} <SOURCE_DIR>/${_proj_name}/src
-    -DCMAKE_PREFIX_PATH=${SB_INSTALL_DIR}
     -DCERES_ROOT_DIR=${SB_INSTALL_DIR}
     -DOpenCV_DIR=${OpenCV_DIR}
     -DADDITIONAL_INCLUDE_DIRS=${SB_INSTALL_DIR}/include
     -DYET_ADDITIONAL_INCLUDE_DIRS=${EXTRA_INCLUDE_DIRS}
-    -DCMAKE_CXX_FLAGS=-I${SB_INSTALL_DIR}/include
     -DOPENSFM_BUILD_TESTS=off
     -DPYTHON_EXECUTABLE=${PYTHON_EXE_PATH}
     ${WIN32_CMAKE_ARGS}
