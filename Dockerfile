@@ -40,6 +40,11 @@ COPY --from=builder /code /code
 
 ENV PATH="/code/venv/bin:$PATH"
 
+# Fix exifread 3.x IndexError on empty MakerNote tag values (DJI images)
+RUN sed -i \
+  's/printable = str(values\[0\])/printable = str(values[0]) if values else ""/' \
+  /code/venv/lib/python3.12/site-packages/exifread/core/exif_header.py
+
 # Install shared libraries that we depend on via APT, but *not*
 # the -dev packages to save space!
 # Also run a smoke test on ODM and OpenSfM
